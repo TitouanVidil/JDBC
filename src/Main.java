@@ -1,31 +1,25 @@
+import Model.Connexion;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.Properties;
 
 public class Main {
     public static void main(String[] args)
     {
         System.out.println("Hello world!");
 
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-        }
-
-        catch(ClassNotFoundException e)
-        {
-            System.out.println("Erreur lors du chargement "+e.getMessage());
-        }
-
         String url = "jdbc:mysql://localhost:3306/immodb";
-        Connection connexion = null;
         Statement stmt = null;
         ResultSet resultat = null;
+        Connection con = null;
+        Properties props = null;
 
         try
         {
-            connexion = DriverManager.getConnection(url,"root","");
-            stmt = (Statement) connexion.createStatement();
+            con = Connexion.getConnexion(url,props);
+            stmt = (Statement) con.createStatement();
             resultat = stmt.executeQuery("Select a_code, a_etat FROM appartement WHERE a_etat in('TBE','BON');");
 
             System.out.println(resultat);
