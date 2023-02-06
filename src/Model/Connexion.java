@@ -20,8 +20,6 @@ public class Connexion
 
         String url = "jdbc:mysql://localhost:3306/immodb";
         Connection connexion = null;
-        Statement stmt = null;
-        ResultSet resultat = null;
     }
 
 }
